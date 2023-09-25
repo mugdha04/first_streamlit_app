@@ -1,5 +1,6 @@
 import streamlit
 import pandas
+import requests
 import snowflake.connector
 streamlit.title('My New Healthy Diner')
 streamlit.header('Breakfast Favorites')
@@ -19,8 +20,6 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 streamlit.header("Fruityvice Fruit Advice!")
-
-import requests
 # streamlit.text(fruityvice_response.json())
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
 streamlit.write('The user entered ', fruit_choice)
@@ -37,3 +36,6 @@ my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
 my_data_rows = my_cur.fetchall()
 streamlit.header("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
+
+add_my_fruit = streamlit.text_input('What fruit would you like to add?')
+streamlit.write('Thanks for adding ', add_my_fruit)
